@@ -20,6 +20,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
     private int mode;
 
     protected static final int TYPE_HEADER = 1000;
+    protected static final int TYPE_EMPTY_HEADER = 1002;
 
     private static final int ARROW_ROTATION_DURATION = 150;
 
@@ -86,6 +87,39 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
             arrow.setRotation(isExpanded(position) ? 90 : 0);
         }
     }
+    
+    
+    public class EmptyHeaderViewHolder extends ViewHolder {
+        ImageView arrow;
+
+        public EmptyHeaderViewHolder(View view, final ImageView arrow) {
+            super(view);
+
+            this.arrow = arrow;
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    handleClick();
+                }
+            });
+        }
+
+        protected void handleClick() {
+            if (toggleExpandedItems(getLayoutPosition(), false)) {
+                openArrow(arrow);
+            } else {
+                closeArrow(arrow);
+            }
+        }
+
+        public void bind(int position) {
+            arrow.setRotation(isExpanded(position) ? 90 : 0);
+        }
+    }
+    
+    
+    
 
     public boolean toggleExpandedItems(int position, boolean notify) {
         if (isExpanded(position)) {

@@ -173,7 +173,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
         int allItemsPosition = indexList.get(position);
         expandMap.delete(allItemsPosition);
         
-        if (notify) { 
+        if (notify) {
             notifyItemChanged(position);
         }
     }
@@ -272,7 +272,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
     
     public void collapseAllExcept(int position) {
         for (int i=visibleItems.size()-1; i>=0; i--) {
-            if (i != position && getItemViewType(i) == TYPE_HEADER) {
+            if (i != position && getItemViewType(i) == (TYPE_HEADER  | TYPE_EMPTY_HEADER)) {
                 if (isExpanded(i)) {
                     collapseItems(i, true);
                 }
@@ -282,7 +282,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
     
     public void expandAll() {
         for (int i=visibleItems.size()-1; i>=0; i--) {
-            if (getItemViewType(i) == TYPE_HEADER) {
+            if (getItemViewType(i) == (TYPE_HEADER  | TYPE_EMPTY_HEADER)) {
                 if (!isExpanded(i)) {
                     expandItems(i, true);
                 }

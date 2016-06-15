@@ -173,7 +173,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
         int allItemsPosition = indexList.get(position);
         expandMap.delete(allItemsPosition);
         
-        if (notify) {
+        if (notify) { 
             notifyItemChanged(position);
         }
     }

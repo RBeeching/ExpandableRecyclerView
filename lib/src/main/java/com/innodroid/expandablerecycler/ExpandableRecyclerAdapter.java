@@ -21,7 +21,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
     private int mode;
     
     protected static final int TYPE_HEADER = 1000;
-    protected static final int TYPE_EMPTY_HEADER = 1002;
+    protected static final int TYPE_EMPTY_HEADER = 1003;
     
     private static final int ARROW_ROTATION_DURATION = 150;
     

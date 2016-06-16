@@ -141,7 +141,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
         int index = indexList.get(position);
         int insert = position;
         
-        for (int i=index+1; i<allItems.size() && allItems.get(i).ItemType != (TYPE_HEADER  | TYPE_EMPTY_HEADER); i++) {
+        for (int i=index+1; i<allItems.size() && allItems.get(i).ItemType != (TYPE_HEADER  || TYPE_EMPTY_HEADER); i++) {
             insert++;
             count++;
             visibleItems.add(insert, allItems.get(i));
@@ -162,7 +162,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
         int count = 0;
         int index = indexList.get(position);
         
-        for (int i=index+1; i<allItems.size() && allItems.get(i).ItemType != (TYPE_HEADER  | TYPE_EMPTY_HEADER) ; i++) {
+        for (int i=index+1; i<allItems.size() && allItems.get(i).ItemType != (TYPE_HEADER  || TYPE_EMPTY_HEADER) ; i++) {
             count++;
             visibleItems.remove(position + 1);
             indexList.remove(position + 1);
@@ -207,7 +207,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
         indexList.clear();
         
         for (int i=0; i<items.size(); i++) {
-            if (items.get(i).ItemType == (TYPE_HEADER | TYPE_EMPTY_HEADER)) {
+            if (items.get(i).ItemType == (TYPE_HEADER || TYPE_EMPTY_HEADER)) {
                 indexList.add(i);
                 visibleItems.add(items.get(i));
             }
@@ -272,7 +272,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
     
     public void collapseAllExcept(int position) {
         for (int i=visibleItems.size()-1; i>=0; i--) {
-            if (i != position && getItemViewType(i) == (TYPE_HEADER  | TYPE_EMPTY_HEADER)) {
+            if (i != position && getItemViewType(i) == (TYPE_HEADER  || TYPE_EMPTY_HEADER)) {
                 if (isExpanded(i)) {
                     collapseItems(i, true);
                 }
@@ -282,7 +282,7 @@ public abstract class ExpandableRecyclerAdapter<T extends ExpandableRecyclerAdap
     
     public void expandAll() {
         for (int i=visibleItems.size()-1; i>=0; i--) {
-            if (getItemViewType(i) == (TYPE_HEADER  | TYPE_EMPTY_HEADER)) {
+            if (getItemViewType(i) == (TYPE_HEADER  || TYPE_EMPTY_HEADER)) {
                 if (!isExpanded(i)) {
                     expandItems(i, true);
                 }
